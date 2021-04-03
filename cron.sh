@@ -1,1 +1,1 @@
-crontab -l | { cat; echo "* * * * * sh /path/to/backup.sh"; } | crontab -
+crontab -l | { cat; echo "0 */4 * * * sh /path/to/backup.sh"; } | crontab -
