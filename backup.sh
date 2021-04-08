@@ -1,10 +1,16 @@
 #!/bin/bash
 
+# Create the backups folder for the month (e.g. 202102)
+backupsDir=/path/to/backups/$(date +%Y%m)
+if [ ! -d $backupsDir ]; then
+	mkdir $backupsDir
+fi
+
 # List all the projects to be backed-up and create a TAR file
 # for each of them in the backups folder
-projects=(`ls /path/to/projects/`)
+projectsDir=/path/to/projects/
+projects=(`ls $projectsDir`)
 for project in ${projects[@]}
 do
-	tar -czvf /path/to/backups/${project}_$(date +%Y%m%d%H%M%S).tar.gz -C /path/to/projects/ ${project}
+	tar -czvf $backupsDir/${project}_$(date +%Y%m%d%H%M%S).tar.gz -C $projectsDir ${project}
 done
-
